@@ -1,0 +1,13 @@
+<input type="file" id="fileInput">
+<p id="fileSize"></p>
+
+<script>
+  document.getElementById('fileInput').addEventListener('change', function () {
+    const file = this.files[0]
+    if (file) {
+      document.getElementById('fileSize').textContent = `${file.size} bytes`
+    } else {
+      document.getElementById('fileSize').textContent = ''
+    }
+  })
+</script>
