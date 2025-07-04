@@ -1,13 +1,17 @@
-<input type="file" id="fileInput">
+<input type="file" id="fileInput" onchange="checkCod(this)">
 <p id="fileSize"></p>
 
 <script>
-  document.getElementById('fileInput').addEventListener('change', function () {
-    const file = this.files[0]
-    if (file) {
-      document.getElementById('fileSize').textContent = `${file.size} bytes`
-    } else {
-      document.getElementById('fileSize').textContent = ''
+  function checkCod(input) {
+    if (input.files && input.files.length > 0) {
+      var file = input.files[0]
+      if (!file.name.toLowerCase().endsWith('.cod')) {
+        alert('only .cod files allowed')
+        input.value = '' // clears it
+        document.getElementById('fileSize').innerHTML = ''
+        return
+      }
+      document.getElementById('fileSize').innerHTML = file.size + ' bytes'
     }
-  })
+  }
 </script>
